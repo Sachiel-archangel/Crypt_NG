@@ -22,6 +22,8 @@ Therefore, if it is executed repeatedly, overhead will occur due to acquisition 
 ・エラー処理は十分ではない。  
 　（あくまでCNGの動作を確認するためのサンプルコード）  
 ・大きなサイズのファイル/データについては考えていない。  
+・BCryptGenerateSymmetricKeyを使ったロジックまでは作っていない。(気が向いたら作るかもしれない。)  
   
 - Error handling is not enough.  
 - It does not support large files/data.  
+- I don't create the logic using "BCryptGenerateSymmetricKey" in this time.
