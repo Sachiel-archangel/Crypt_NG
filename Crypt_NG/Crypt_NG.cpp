@@ -30,11 +30,8 @@ int main()
 	objData.SetCurrentDataSize(lstrlenW((LPCWSTR)objData.GetDataPointer()) * 2 + 2);
 
 
-//    std::cout << "Hello World!\n"; 
-//	AES128::Encrypt(&objKey, &objData, AES128_MODE_GCM);
 	AES128::EncryptECB(&objKey, &objData);
 
-//	AES128::Decrypt(&objKey, &objData, AES128_MODE_GCM);
 	AES128::DecryptECB(&objKey, &objData);
 
 
