@@ -19,4 +19,3 @@ Therefore, if it is executed repeatedly, overhead will occur due to acquisition 
   
 - Error handling is not enough.  
 - It does not support large files/data.  
-- 
