@@ -5,12 +5,7 @@
 #include <iostream>
 #include "DataContainer.h"
 #include "AES128.h"
-
-static const BYTE bAES128SampleKey[] =
-{
-	0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
-	0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F
-};
+#include "Random.h"
 
 
 
@@ -19,38 +14,39 @@ int main()
 	DataContainer objKey;
 	DataContainer objData;
 	DataContainer objIV;
+	DataContainer objRandom;
+
 
 	// ダミーデータ設定
-	objKey.CreateDataObject(16);
-	objKey.SetCurrentDataSize(16);
-	memcpy(objKey.GetDataPointer(), bAES128SampleKey, 16);
-
 	objData.CreateDataObject(64);
 	wcscpy_s((wchar_t*)objData.GetDataPointer(), 64, (const wchar_t*)L"Test Data for Encrypt");
 	objData.SetCurrentDataSize(lstrlenW((LPCWSTR)objData.GetDataPointer()) * 2 + 2);
 
+	// 鍵を乱数で作成
+	AES128::CreateKey(&objKey);
 
+
+	// 暗号化
 	AES128::EncryptECB(&objKey, &objData);
 
+	// 復号化
 	AES128::DecryptECB(&objKey, &objData);
 
 
 
 	// ダミーデータ設定
-	objKey.CreateDataObject(16);
-	objKey.SetCurrentDataSize(16);
-	memcpy(objKey.GetDataPointer(), bAES128SampleKey, 16);
-
 	objData.CreateDataObject(64);
 	wcscpy_s((wchar_t*)objData.GetDataPointer(), 64, (const wchar_t*)L"Test Data for Encrypt");
 	objData.SetCurrentDataSize(lstrlenW((LPCWSTR)objData.GetDataPointer()) * 2 + 2);
 
-	objIV.CreateDataObject(16);
-	objIV.SetCurrentDataSize(16);
+	// IVを乱数で作成
+	AES128::CreateKey(&objIV);
 
 
+	// 暗号化
 	AES128::EncryptCBC(&objKey, &objData, &objIV);
 
+	// 復号化
 	AES128::DecryptCBC(&objKey, &objData, &objIV);
 
 

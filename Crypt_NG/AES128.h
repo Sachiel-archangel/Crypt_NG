@@ -23,6 +23,8 @@ public:
 	static int DecryptECB(DataContainer *pobjKey, DataContainer *pobjData);
 	static int EncryptCBC(DataContainer *pobjKey, DataContainer *pobjData, DataContainer *pobjIV);
 	static int DecryptCBC(DataContainer *pobjKey, DataContainer *pobjData, DataContainer *pobjIV);
+	static int CreateIV(DataContainer *pobjIV);
+	static int CreateKey(DataContainer *pobjIV);
 
 private:
 	static BCRYPT_KEY_HANDLE ImportKey(BCRYPT_ALG_HANDLE hAesAlg, DataContainer *pobjKey);

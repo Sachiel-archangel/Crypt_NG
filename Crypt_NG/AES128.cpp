@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "AES128.h"
+#include "Random.h"
 #include <bcrypt.h>
 #include <stdio.h>
 
@@ -424,6 +425,18 @@ int AES128::DecryptCBC(DataContainer *pobjKey, DataContainer *pobjData, DataCont
 	}
 
 	return retcode;
+}
+
+
+int AES128::CreateIV(DataContainer *pobjIV)
+{
+	return Random::GenRandom(pobjIV, 16);
+}
+
+
+int AES128::CreateKey(DataContainer *pobjKey)
+{
+	return Random::GenRandom(pobjKey, 16);
 }
 
 
