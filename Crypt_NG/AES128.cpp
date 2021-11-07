@@ -138,7 +138,7 @@ int AES128::EncryptECB(DataContainer *pobjKey, DataContainer *pobjData)
 		BCryptDestroyKey(hKey);
 	}
 
-	return AES128_SUCCESS;
+	return retcode;
 }
 
 
